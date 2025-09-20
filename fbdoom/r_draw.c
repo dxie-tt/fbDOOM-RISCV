@@ -169,7 +169,9 @@ void R_DrawColumn (void)
 
             vuint8m8_t color =  __riscv_vrgather_vv_u8m8(colormap, color_index_8, vl);
 
-            __riscv_vsse8_v_u8m8(dest, SCREENWIDTH, color, vl);
+            vuint8m1_t color_trunc =  __riscv_vlmul_trunc_v_u8m8_u8m1(color);
+
+            __riscv_vsse8_v_u8m1(dest, SCREENWIDTH, color_trunc, vl);
 
             dest += vl * SCREENWIDTH;
             frac += vl * fracstep;
