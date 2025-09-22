@@ -8,7 +8,7 @@ Optimized routines are:
 General optimizations in different routines in:
   - i_video_fbdev.c
 
-Vectorization have been thought for a machine with VLEN=512 and DLEN=512.
+Vectorization have been thought for a machine with VLEN=256 and DLEN=256.
 For other architectures, you might need to change the vrgather instructions
 with vector load indexed instructions.
 

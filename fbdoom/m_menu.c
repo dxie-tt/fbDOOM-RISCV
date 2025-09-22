@@ -1402,8 +1402,8 @@ M_WriteText
 
 static boolean IsNullKey(int key)
 {
-    return key == KEY_PAUSE || key == KEY_CAPSLOCK
-        || key == KEY_SCRLCK || key == KEY_NUMLOCK;
+    return key == DOOM_KEY_PAUSE || key == DOOM_KEY_CAPSLOCK
+        || key == DOOM_KEY_SCRLCK || key == DOOM_KEY_NUMLOCK;
 }
 
 //
@@ -1567,7 +1567,7 @@ boolean M_Responder (event_t* ev)
     {
 	switch(key)
 	{
-	  case KEY_BACKSPACE:
+	  case DOOM_KEY_BACKSPACE:
 	    if (saveCharIndex > 0)
 	    {
 		saveCharIndex--;
@@ -1575,13 +1575,13 @@ boolean M_Responder (event_t* ev)
 	    }
 	    break;
 
-          case KEY_ESCAPE:
+          case DOOM_KEY_ESCAPE:
             saveStringEnter = 0;
             M_StringCopy(savegamestrings[saveSlot], saveOldString,
                          SAVESTRINGSIZE);
             break;
 
-	  case KEY_ENTER:
+	  case DOOM_KEY_ENTER:
 	    saveStringEnter = 0;
 	    if (savegamestrings[saveSlot][0])
 		M_DoSave(saveSlot);
@@ -1626,7 +1626,7 @@ boolean M_Responder (event_t* ev)
     {
 	if (messageNeedsInput)
         {
-            if (key != ' ' && key != KEY_ESCAPE
+            if (key != ' ' && key != DOOM_KEY_ESCAPE
              && key != key_menu_confirm && key != key_menu_abort)
             {
                 return false;

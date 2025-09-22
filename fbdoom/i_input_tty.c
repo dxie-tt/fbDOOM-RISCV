@@ -57,7 +57,7 @@ static int shiftdown = 0;
 static const char at_to_doom[] =
 {
     /* 0x00 */ 0x00,
-    /* 0x01 */ KEY_ESCAPE,
+    /* 0x01 */ DOOM_KEY_ESCAPE,
     /* 0x02 */ '1',
     /* 0x03 */ '2',
     /* 0x04 */ '3',
@@ -70,8 +70,8 @@ static const char at_to_doom[] =
     /* 0x0b */ '0',
     /* 0x0c */ '-',
     /* 0x0d */ '=',
-    /* 0x0e */ KEY_BACKSPACE,
-    /* 0x0f */ KEY_TAB,
+    /* 0x0e */ DOOM_KEY_BACKSPACE,
+    /* 0x0f */ DOOM_KEY_TAB,
     /* 0x10 */ 'q',
     /* 0x11 */ 'w',
     /* 0x12 */ 'e',
@@ -84,8 +84,8 @@ static const char at_to_doom[] =
     /* 0x19 */ 'p',
     /* 0x1a */ '[',
     /* 0x1b */ ']',
-    /* 0x1c */ KEY_ENTER,
-    /* 0x1d */ KEY_FIRE, /* KEY_RCTRL, */
+    /* 0x1c */ DOOM_KEY_ENTER,
+    /* 0x1d */ DOOM_KEY_FIRE, /* DOOM_KEY_RCTRL, */
     /* 0x1e */ 'a',
     /* 0x1f */ 's',
     /* 0x20 */ 'd',
@@ -98,7 +98,7 @@ static const char at_to_doom[] =
     /* 0x27 */ ';',
     /* 0x28 */ '\'',
     /* 0x29 */ '`',
-    /* 0x2a */ KEY_RSHIFT,
+    /* 0x2a */ DOOM_KEY_RSHIFT,
     /* 0x2b */ '\\',
     /* 0x2c */ 'z',
     /* 0x2d */ 'x',
@@ -110,22 +110,22 @@ static const char at_to_doom[] =
     /* 0x33 */ ',',
     /* 0x34 */ '.',
     /* 0x35 */ '/',
-    /* 0x36 */ KEY_RSHIFT,
-    /* 0x37 */ KEYP_MULTIPLY,
-    /* 0x38 */ KEY_LALT,
-    /* 0x39 */ KEY_USE,
-    /* 0x3a */ KEY_CAPSLOCK,
-    /* 0x3b */ KEY_F1,
-    /* 0x3c */ KEY_F2,
-    /* 0x3d */ KEY_F3,
-    /* 0x3e */ KEY_F4,
-    /* 0x3f */ KEY_F5,
-    /* 0x40 */ KEY_F6,
-    /* 0x41 */ KEY_F7,
-    /* 0x42 */ KEY_F8,
-    /* 0x43 */ KEY_F9,
-    /* 0x44 */ KEY_F10,
-    /* 0x45 */ KEY_NUMLOCK,
+    /* 0x36 */ DOOM_KEY_RSHIFT,
+    /* 0x37 */ DOOM_KEYP_MULTIPLY,
+    /* 0x38 */ DOOM_KEY_LALT,
+    /* 0x39 */ DOOM_KEY_USE,
+    /* 0x3a */ DOOM_KEY_CAPSLOCK,
+    /* 0x3b */ DOOM_KEY_F1,
+    /* 0x3c */ DOOM_KEY_F2,
+    /* 0x3d */ DOOM_KEY_F3,
+    /* 0x3e */ DOOM_KEY_F4,
+    /* 0x3f */ DOOM_KEY_F5,
+    /* 0x40 */ DOOM_KEY_F6,
+    /* 0x41 */ DOOM_KEY_F7,
+    /* 0x42 */ DOOM_KEY_F8,
+    /* 0x43 */ DOOM_KEY_F9,
+    /* 0x44 */ DOOM_DOOM_KEY_F10,
+    /* 0x45 */ DOOM_KEY_NUMLOCK,
     /* 0x46 */ 0x0,
     /* 0x47 */ 0x0, /* 47 (Keypad-7/Home) */
     /* 0x48 */ 0x0, /* 48 (Keypad-8/Up) */
@@ -159,12 +159,12 @@ static const char at_to_doom[] =
     /* 0x64 */ 0x0,
     /* 0x65 */ 0x0,
     /* 0x66 */ 0x0,
-    /* 0x67 */ KEY_UPARROW,
+    /* 0x67 */ DOOM_KEY_UPARROW,
     /* 0x68 */ 0x0,
-    /* 0x69 */ KEY_LEFTARROW,
-    /* 0x6a */ KEY_RIGHTARROW,
+    /* 0x69 */ DOOM_KEY_LEFTARROW,
+    /* 0x6a */ DOOM_KEY_RIGHTARROW,
     /* 0x6b */ 0x0,
-    /* 0x6c */ KEY_DOWNARROW,
+    /* 0x6c */ DOOM_KEY_DOWNARROW,
     /* 0x6d */ 0x0,
     /* 0x6e */ 0x0,
     /* 0x6f */ 0x0,
@@ -183,7 +183,7 @@ static const char at_to_doom[] =
     /* 0x7c */ 0x0,
     /* 0x7d */ 0x0,
     /* 0x7e */ 0x0,
-    /* 0x7f */ KEY_FIRE, //KEY_RCTRL,
+    /* 0x7f */ DOOM_KEY_FIRE, //DOOM_KEY_RCTRL,
 };
 
 // Lookup table for mapping ASCII characters to their equivalent when
@@ -264,9 +264,7 @@ void kbd_shutdown(void)
 
     printf("Exiting normally.\n");
     if (old_mode != -1) {
-#if 0
         ioctl(kb, KDSKBMODE, old_mode);
-#endif
         tcsetattr(kb, 0, &old_term);
     }
 
@@ -289,7 +287,6 @@ static int kbd_init(void)
        stdin, stdout, or stderr. We'll try them in that order.
        If none are acceptable, we're probably not being run
        from a VT. */
-#if 0
     for (i = 0; files_to_try[i] != NULL; i++) {
         /* Try to open the file. */
         kb = open(files_to_try[i], O_RDONLY);
@@ -314,10 +311,6 @@ static int kbd_init(void)
             }
         }
     }
-#else
-    found = 1;
-    kb = 0;
-#endif
 
     if (!found) {
         printf("Unable to find a file descriptor associated with "\
@@ -326,13 +319,11 @@ static int kbd_init(void)
         return 1;
     }
 
-#if 0
     /* Find the keyboard's mode so we can restore it later. */
     if (ioctl(kb, KDGKBMODE, &old_mode) != 0) {
         printf("Unable to query keyboard mode.\n");
         kbd_shutdown();
     }
-#endif
 
     /* Adjust the terminal's settings. In particular, disable
        echoing, signal generation, and line buffering. Any of
@@ -352,13 +343,11 @@ static int kbd_init(void)
         printf("Unable to change terminal settings.\n");
     }
     
-#if 0
     /* Put the keyboard in mediumraw mode. */
     if (ioctl(kb, KDSKBMODE, K_MEDIUMRAW) != 0) {
         printf("Unable to set mediumraw mode.\n");
         kbd_shutdown();
     }
-#endif
 
     /* Put in non-blocking mode */
     flags = fcntl(kb, F_GETFL, 0);
@@ -447,7 +436,7 @@ void I_GetEvent(void)
     
     while (kbd_read(&pressed, &key))
     {
-        if (key == 0x0E || key == 'q' || key == 'Q') {
+        if (key == 0x0E) {
             kbd_shutdown();
             I_Quit();
         }

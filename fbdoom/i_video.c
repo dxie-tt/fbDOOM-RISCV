@@ -454,45 +454,45 @@ static int TranslateKey(SDL_keysym *sym)
 {
     switch(sym->sym)
     {
-      case SDLK_LEFT:	return KEY_LEFTARROW;
-      case SDLK_RIGHT:	return KEY_RIGHTARROW;
-      case SDLK_DOWN:	return KEY_DOWNARROW;
-      case SDLK_UP:	return KEY_UPARROW;
-      case SDLK_ESCAPE:	return KEY_ESCAPE;
-      case SDLK_RETURN:	return KEY_ENTER;
-      case SDLK_TAB:	return KEY_TAB;
-      case SDLK_F1:	return KEY_F1;
-      case SDLK_F2:	return KEY_F2;
-      case SDLK_F3:	return KEY_F3;
-      case SDLK_F4:	return KEY_F4;
-      case SDLK_F5:	return KEY_F5;
-      case SDLK_F6:	return KEY_F6;
-      case SDLK_F7:	return KEY_F7;
-      case SDLK_F8:	return KEY_F8;
-      case SDLK_F9:	return KEY_F9;
-      case SDLK_F10:	return KEY_F10;
-      case SDLK_F11:	return KEY_F11;
-      case SDLK_F12:	return KEY_F12;
-      case SDLK_PRINT:  return KEY_PRTSCR;
+      case SDLK_LEFT:	return DOOM_KEY_LEFTARROW;
+      case SDLK_RIGHT:	return DOOM_KEY_RIGHTARROW;
+      case SDLK_DOWN:	return DOOM_KEY_DOWNARROW;
+      case SDLK_UP:	return DOOM_KEY_UPARROW;
+      case SDLK_ESCAPE:	return DOOM_KEY_ESCAPE;
+      case SDLK_RETURN:	return DOOM_KEY_ENTER;
+      case SDLK_TAB:	return DOOM_KEY_TAB;
+      case SDLK_F1:	return DOOM_KEY_F1;
+      case SDLK_F2:	return DOOM_KEY_F2;
+      case SDLK_F3:	return DOOM_KEY_F3;
+      case SDLK_F4:	return DOOM_KEY_F4;
+      case SDLK_F5:	return DOOM_KEY_F5;
+      case SDLK_F6:	return DOOM_KEY_F6;
+      case SDLK_F7:	return DOOM_KEY_F7;
+      case SDLK_F8:	return DOOM_KEY_F8;
+      case SDLK_F9:	return DOOM_KEY_F9;
+      case SDLK_F10:	return DOOM_DOOM_KEY_F10;
+      case SDLK_F11:	return DOOM_DOOM_KEY_F11;
+      case SDLK_F12:	return DOOM_DOOM_KEY_F12;
+      case SDLK_PRINT:  return DOOM_KEY_PRTSCR;
 
-      case SDLK_BACKSPACE: return KEY_BACKSPACE;
-      case SDLK_DELETE:	return KEY_DEL;
+      case SDLK_BACKSPACE: return DOOM_KEY_BACKSPACE;
+      case SDLK_DELETE:	return DOOM_KEY_DEL;
 
-      case SDLK_PAUSE:	return KEY_PAUSE;
+      case SDLK_PAUSE:	return DOOM_KEY_PAUSE;
 
 #if !SDL_VERSION_ATLEAST(1, 3, 0)
-      case SDLK_EQUALS: return KEY_EQUALS;
+      case SDLK_EQUALS: return DOOM_KEY_EQUALS;
 #endif
 
-      case SDLK_MINUS:          return KEY_MINUS;
+      case SDLK_MINUS:          return DOOM_KEY_MINUS;
 
       case SDLK_LSHIFT:
       case SDLK_RSHIFT:
-	return KEY_RSHIFT;
+	return DOOM_KEY_RSHIFT;
 	
       case SDLK_LCTRL:
       case SDLK_RCTRL:
-	return KEY_RCTRL;
+	return DOOM_KEY_RCTRL;
 	
       case SDLK_LALT:
       case SDLK_RALT:
@@ -500,44 +500,44 @@ static int TranslateKey(SDL_keysym *sym)
       case SDLK_LMETA:
       case SDLK_RMETA:
 #endif
-        return KEY_RALT;
+        return DOOM_KEY_RALT;
 
-      case SDLK_CAPSLOCK: return KEY_CAPSLOCK;
-      case SDLK_SCROLLOCK: return KEY_SCRLCK;
-      case SDLK_NUMLOCK: return KEY_NUMLOCK;
+      case SDLK_CAPSLOCK: return DOOM_KEY_CAPSLOCK;
+      case SDLK_SCROLLOCK: return DOOM_KEY_SCRLCK;
+      case SDLK_NUMLOCK: return DOOM_KEY_NUMLOCK;
 
-      case SDLK_KP0: return KEYP_0;
-      case SDLK_KP1: return KEYP_1;
-      case SDLK_KP2: return KEYP_2;
-      case SDLK_KP3: return KEYP_3;
-      case SDLK_KP4: return KEYP_4;
-      case SDLK_KP5: return KEYP_5;
-      case SDLK_KP6: return KEYP_6;
-      case SDLK_KP7: return KEYP_7;
-      case SDLK_KP8: return KEYP_8;
-      case SDLK_KP9: return KEYP_9;
+      case SDLK_KP0: return DOOM_KEYP_0;
+      case SDLK_KP1: return DOOM_KEYP_1;
+      case SDLK_KP2: return DOOM_KEYP_2;
+      case SDLK_KP3: return DOOM_KEYP_3;
+      case SDLK_KP4: return DOOM_KEYP_4;
+      case SDLK_KP5: return DOOM_KEYP_5;
+      case SDLK_KP6: return DOOM_KEYP_6;
+      case SDLK_KP7: return DOOM_KEYP_7;
+      case SDLK_KP8: return DOOM_KEYP_8;
+      case SDLK_KP9: return DOOM_KEYP_9;
 
-      case SDLK_KP_PERIOD:   return KEYP_PERIOD;
-      case SDLK_KP_MULTIPLY: return KEYP_MULTIPLY;
-      case SDLK_KP_PLUS:     return KEYP_PLUS;
-      case SDLK_KP_MINUS:    return KEYP_MINUS;
-      case SDLK_KP_DIVIDE:   return KEYP_DIVIDE;
-      case SDLK_KP_EQUALS:   return KEYP_EQUALS;
-      case SDLK_KP_ENTER:    return KEYP_ENTER;
+      case SDLK_KP_PERIOD:   return DOOM_KEYP_PERIOD;
+      case SDLK_KP_MULTIPLY: return DOOM_KEYP_MULTIPLY;
+      case SDLK_KP_PLUS:     return DOOM_KEYP_PLUS;
+      case SDLK_KP_MINUS:    return DOOM_KEYP_MINUS;
+      case SDLK_KP_DIVIDE:   return DOOM_KEYP_DIVIDE;
+      case SDLK_KP_EQUALS:   return DOOM_KEYP_EQUALS;
+      case SDLK_KP_ENTER:    return DOOM_KEYP_ENTER;
 
-      case SDLK_HOME: return KEY_HOME;
-      case SDLK_INSERT: return KEY_INS;
-      case SDLK_END: return KEY_END;
-      case SDLK_PAGEUP: return KEY_PGUP;
-      case SDLK_PAGEDOWN: return KEY_PGDN;
+      case SDLK_HOME: return DOOM_KEY_HOME;
+      case SDLK_INSERT: return DOOM_KEY_INS;
+      case SDLK_END: return DOOM_KEY_END;
+      case SDLK_PAGEUP: return DOOM_KEY_PGUP;
+      case SDLK_PAGEDOWN: return DOOM_KEY_PGDN;
 
 #ifdef SDL_HAVE_APP_KEYS
-        case SDLK_APP1:        return KEY_F1;
-        case SDLK_APP2:        return KEY_F2;
-        case SDLK_APP3:        return KEY_F3;
-        case SDLK_APP4:        return KEY_F4;
-        case SDLK_APP5:        return KEY_F5;
-        case SDLK_APP6:        return KEY_F6;
+        case SDLK_APP1:        return DOOM_KEY_F1;
+        case SDLK_APP2:        return DOOM_KEY_F2;
+        case SDLK_APP3:        return DOOM_KEY_F3;
+        case SDLK_APP4:        return DOOM_KEY_F4;
+        case SDLK_APP5:        return DOOM_KEY_F5;
+        case SDLK_APP6:        return DOOM_KEY_F6;
 #endif
 
       default:

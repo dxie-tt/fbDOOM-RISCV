@@ -1578,7 +1578,7 @@ static default_t *SearchCollection(default_collection_t *collection, char *name)
 // Mapping from DOS keyboard scan code to internal key code (as defined
 // in doomkey.h). I think I (fraggle) reused this from somewhere else
 // but I can't find where. Anyway, notes:
-//  * KEY_PAUSE is wrong - it's in the KEY_NUMLOCK spot. This shouldn't
+//  * DOOM_KEY_PAUSE is wrong - it's in the DOOM_KEY_NUMLOCK spot. This shouldn't
 //    matter in terms of Vanilla compatibility because neither of
 //    those were valid for key bindings.
 //  * There is no proper scan code for PrintScreen (on DOS machines it
@@ -1588,21 +1588,21 @@ static default_t *SearchCollection(default_collection_t *collection, char *name)
 static const int scantokey[128] =
 {
     0  ,    27,     '1',    '2',    '3',    '4',    '5',    '6',
-    '7',    '8',    '9',    '0',    '-',    '=',    KEY_BACKSPACE, 9,
+    '7',    '8',    '9',    '0',    '-',    '=',    DOOM_KEY_BACKSPACE, 9,
     'q',    'w',    'e',    'r',    't',    'y',    'u',    'i',
-    'o',    'p',    '[',    ']',    13,		KEY_RCTRL, 'a',    's',
+    'o',    'p',    '[',    ']',    13,		DOOM_KEY_RCTRL, 'a',    's',
     'd',    'f',    'g',    'h',    'j',    'k',    'l',    ';',
-    '\'',   '`',    KEY_RSHIFT,'\\',   'z',    'x',    'c',    'v',
-    'b',    'n',    'm',    ',',    '.',    '/',    KEY_RSHIFT,KEYP_MULTIPLY,
-    KEY_RALT,  ' ',  KEY_CAPSLOCK,KEY_F1,  KEY_F2,   KEY_F3,   KEY_F4,   KEY_F5,
-    KEY_F6,   KEY_F7,   KEY_F8,   KEY_F9,   KEY_F10,  /*KEY_NUMLOCK?*/KEY_PAUSE,KEY_SCRLCK,KEY_HOME,
-    KEY_UPARROW,KEY_PGUP,KEY_MINUS,KEY_LEFTARROW,KEYP_5,KEY_RIGHTARROW,KEYP_PLUS,KEY_END,
-    KEY_DOWNARROW,KEY_PGDN,KEY_INS,KEY_DEL,0,   0,      0,      KEY_F11,
-    KEY_F12,  0,      0,      0,      0,      0,      0,      0,
+    '\'',   '`',    DOOM_KEY_RSHIFT,'\\',   'z',    'x',    'c',    'v',
+    'b',    'n',    'm',    ',',    '.',    '/',    DOOM_KEY_RSHIFT,DOOM_KEYP_MULTIPLY,
+    DOOM_KEY_RALT,  ' ',  DOOM_KEY_CAPSLOCK,DOOM_KEY_F1,  DOOM_KEY_F2,   DOOM_KEY_F3,   DOOM_KEY_F4,   DOOM_KEY_F5,
+    DOOM_KEY_F6,   DOOM_KEY_F7,   DOOM_KEY_F8,   DOOM_KEY_F9,   DOOM_KEY_F10,  /*DOOM_KEY_NUMLOCK?*/DOOM_KEY_PAUSE,DOOM_KEY_SCRLCK,DOOM_KEY_HOME,
+    DOOM_KEY_UPARROW,DOOM_KEY_PGUP,DOOM_KEY_MINUS,DOOM_KEY_LEFTARROW,DOOM_KEYP_5,DOOM_KEY_RIGHTARROW,DOOM_KEYP_PLUS,DOOM_KEY_END,
+    DOOM_KEY_DOWNARROW,DOOM_KEY_PGDN,DOOM_KEY_INS,DOOM_KEY_DEL,0,   0,      0,      DOOM_KEY_F11,
+    DOOM_KEY_F12,  0,      0,      0,      0,      0,      0,      0,
     0,      0,      0,      0,      0,      0,      0,      0,
     0,      0,      0,      0,      0,      0,      0,      0,
     0,      0,      0,      0,      0,      0,      0,      0,
-    0,      0,      0,      0,      0,      0,      KEY_PRTSCR, 0
+    0,      0,      0,      0,      0,      0,      DOOM_KEY_PRTSCR, 0
 };
 
 
