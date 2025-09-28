@@ -495,6 +495,8 @@ void I_InitInput(void)
 {
     kbd_init();
 
+    I_AtExit(kbd_shutdown, true);
+
     //UpdateFocus();
 }
 

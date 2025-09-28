@@ -101,6 +101,12 @@ boolean screensaver_mode = false;
 
 boolean screenvisible;
 
+// If true, we display dots at the bottom of the screen to 
+// indicate FPS.
+
+static boolean display_fps_dots;
+
+
 // Mouse acceleration
 //
 // This emulates some of the behavior of DOS mouse drivers by increasing
@@ -807,6 +813,24 @@ void I_UpdateNoBlit (void)
 
 void I_FinishUpdate (void)
 {
+    static int	lasttic;
+    int		tics;
+    int		i;
+    // draws little dots on the bottom of the screen
+
+    if (display_fps_dots)
+    {
+	i = I_GetTime();
+	tics = i - lasttic;
+	lasttic = i;
+	if (tics > 20) tics = 20;
+
+	for (i=0 ; i<tics*4 ; i+=4)
+	    I_VideoBuffer[ (SCREENHEIGHT-1)*SCREENWIDTH + i] = 0xff;
+	for ( ; i<20*4 ; i+=4)
+	    I_VideoBuffer[ (SCREENHEIGHT-1)*SCREENWIDTH + i] = 0x0;
+    }
+
 #ifdef USE_VECTOR
     if (fb_scaling == 1) {
         // Direct rendering to framebuffer for 1x scaling
@@ -1023,6 +1047,7 @@ void I_BindVideoVariables (void)
 
 void I_DisplayFPSDots (boolean dots_on)
 {
+    display_fps_dots = dots_on;
 }
 
 void I_CheckIsScreensaver (void)
